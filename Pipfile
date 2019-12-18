@@ -1,0 +1,39 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pytest = "*"
+codacy-coverage = "*"
+pytest-cov = "*"
+pylint = "*"
+ipykernel = "*"
+
+[packages]
+fire = "*"
+jinja2 = "*"
+joblib = "*"
+pandas = "*"
+spacy = "*"
+nltk = "*"
+networkx = "*"
+sentry-sdk = "==0.7.10"
+black = "*"
+tqdm = "*"
+requests = "*"
+beautifulsoup4 = "*"
+scipy = "*"
+sklearn = "*"
+sphinx = "*"
+sphinxcontrib-napoleon = "*"
+sphinx-rtd-theme = "*"
+wptools = "*"
+versioneer = "*"
+lazy-import = "*"
+
+[requires]
+python_version = "3.6"
+
+[pipenv]
+allow_prereleases = true

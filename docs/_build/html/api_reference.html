@@ -1,0 +1,999 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>API Reference &mdash; RED Toolkit 0+untagged.60.g0950654.dirty documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Changelog" href="changelog.html" />
+    <link rel="prev" title="Quickstart" href="getting_started/quickstart.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> RED Toolkit
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0+untagged.60.g0950654
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#scidata">Scidata</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-redtoolkit.scidata.dataframes">Dataframes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-redtoolkit.scidata.graphs">Graphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-redtoolkit.scidata.vectors">Vectors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#text-analysis">Text Analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#classifiers">Classifiers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extractors">Extractors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generators">Generators</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-redtoolkit.textanalysis.generators.synonyms">Synonyms</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#helpers">Helpers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-redtoolkit.textanalysis.helpers.converter">Converter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-redtoolkit.textanalysis.helpers.despacy">Despacy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-redtoolkit.textanalysis.helpers.splitter">Splitter</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#similarities">Similarities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-redtoolkit.textanalysis.similarities.embeddings">Embeddings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-redtoolkit.textanalysis.similarities.wordnet">WordNet</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#utilities">Utilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-redtoolkit.utils.exporters">Exporters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-redtoolkit.utils.importers">Importers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-redtoolkit.utils.parallelism">Parallelism</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-redtoolkit.utils.spacy">spaCy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#visualization">Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wrappers">Wrappers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mooc">MOOC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-redtoolkit.wrappers.mooc.coursera">Coursera</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">RED Toolkit</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>API Reference</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/api_reference.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="api-reference">
+<span id="ref-api-reference"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="scidata">
+<h2>Scidata<a class="headerlink" href="#scidata" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-redtoolkit.scidata.dataframes">
+<span id="dataframes"></span><h3>Dataframes<a class="headerlink" href="#module-redtoolkit.scidata.dataframes" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="redtoolkit.scidata.dataframes.spread_col">
+<code class="descname">spread_col</code><span class="sig-paren">(</span><em>df</em>, <em>col_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/scidata/dataframes.html#spread_col"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.scidata.dataframes.spread_col" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a number of columns equal to the number of values of the column <code class="docutils literal notranslate"><span class="pre">col_name</span></code>.       Each of these new columns has a one at a row if that given row has that value in <code class="docutils literal notranslate"><span class="pre">col_name</span></code>       and a zero otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>) – The dataframe to work with.</p></li>
+<li><p><strong>col_name</strong> (<em>str</em>) – The column to spread.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A new modified dataframe.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">test_df</span><span class="o">=</span><span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="s2">&quot;si&quot;</span><span class="p">,</span><span class="s2">&quot;no&quot;</span><span class="p">,</span><span class="s2">&quot;si&quot;</span><span class="p">,</span><span class="s2">&quot;no&quot;</span><span class="p">,</span><span class="s2">&quot;si&quot;</span><span class="p">,</span><span class="s2">&quot;si&quot;</span><span class="p">],</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;col&#39;</span><span class="p">]</span> <span class="p">)</span>
+
+<span class="o">====</span>  <span class="o">=====</span>
+  <span class="o">..</span>  <span class="n">col</span>
+<span class="o">====</span>  <span class="o">=====</span>
+   <span class="mi">0</span>  <span class="n">si</span>
+   <span class="mi">1</span>  <span class="n">no</span>
+   <span class="mi">2</span>  <span class="n">si</span>
+   <span class="mi">3</span>  <span class="n">no</span>
+   <span class="mi">4</span>  <span class="n">si</span>
+   <span class="mi">5</span>  <span class="n">si</span>
+<span class="o">====</span>  <span class="o">=====</span>
+
+<span class="n">test_df</span><span class="o">=</span><span class="n">spread_col</span><span class="p">(</span><span class="n">test_df</span><span class="p">)</span>
+
+<span class="o">====</span>  <span class="o">=====</span>  <span class="o">====</span>  <span class="o">====</span>
+  <span class="o">..</span>  <span class="n">col</span>      <span class="n">no</span>    <span class="n">si</span>
+<span class="o">====</span>  <span class="o">=====</span>  <span class="o">====</span>  <span class="o">====</span>
+   <span class="mi">0</span>  <span class="n">si</span>        <span class="mi">0</span>     <span class="mi">1</span>
+   <span class="mi">1</span>  <span class="n">no</span>        <span class="mi">1</span>     <span class="mi">0</span>
+   <span class="mi">2</span>  <span class="n">si</span>        <span class="mi">0</span>     <span class="mi">1</span>
+   <span class="mi">3</span>  <span class="n">no</span>        <span class="mi">1</span>     <span class="mi">0</span>
+   <span class="mi">4</span>  <span class="n">si</span>        <span class="mi">0</span>     <span class="mi">1</span>
+   <span class="mi">5</span>  <span class="n">si</span>        <span class="mi">0</span>     <span class="mi">1</span>
+<span class="o">====</span>  <span class="o">=====</span>  <span class="o">====</span>  <span class="o">====</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="redtoolkit.scidata.dataframes.column_shift">
+<code class="descname">column_shift</code><span class="sig-paren">(</span><em>df</em>, <em>col_name</em>, <em>shift_len</em>, <em>absolute_value=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/scidata/dataframes.html#column_shift"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.scidata.dataframes.column_shift" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a columns to the dataframe which is an old one shifted by a signed shift forward or backward,       if the absolute value parameter is set to True the new column is the sum of the shift backward and        forward of length shift len where all nonzero values are replaced by the value one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>) – The dataframe to modify.</p></li>
+<li><p><strong>col_name</strong> (<em>str</em>) – Column to shift.</p></li>
+<li><p><strong>shift_len</strong> (<em>int</em>) – Length of the shift.</p></li>
+<li><p><strong>absolute_value</strong> (<em>bool</em><em>, </em><em>optional</em>) – If set to True acts as in the description.
+Defaults to False.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">test_df</span><span class="o">=</span><span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)),</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;col&#39;</span><span class="p">]</span> <span class="p">)</span>
+
+<span class="o">====</span>  <span class="o">=====</span>
+  <span class="o">..</span>    <span class="n">col</span>
+<span class="o">====</span>  <span class="o">=====</span>
+   <span class="mi">0</span>      <span class="mi">0</span>
+   <span class="mi">1</span>      <span class="mi">1</span>
+   <span class="mi">2</span>      <span class="mi">2</span>
+   <span class="mi">3</span>      <span class="mi">3</span>
+   <span class="mi">4</span>      <span class="mi">4</span>
+   <span class="mi">5</span>      <span class="mi">5</span>
+   <span class="mi">6</span>      <span class="mi">6</span>
+<span class="o">====</span>  <span class="o">=====</span>
+
+<span class="n">column_shift</span><span class="p">(</span><span class="n">test_df</span><span class="p">,</span><span class="s1">&#39;col&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="o">====</span>  <span class="o">=====</span>  <span class="o">=======</span>
+  <span class="o">..</span>    <span class="n">col</span>    <span class="n">col_4</span>
+<span class="o">====</span>  <span class="o">=====</span>  <span class="o">=======</span>
+   <span class="mi">0</span>      <span class="mi">0</span>        <span class="mi">4</span>
+   <span class="mi">1</span>      <span class="mi">1</span>        <span class="mi">5</span>
+   <span class="mi">2</span>      <span class="mi">2</span>        <span class="mi">0</span>
+   <span class="mi">3</span>      <span class="mi">3</span>        <span class="mi">0</span>
+   <span class="mi">4</span>      <span class="mi">4</span>        <span class="mi">0</span>
+   <span class="mi">5</span>      <span class="mi">5</span>        <span class="mi">0</span>
+<span class="o">====</span>  <span class="o">=====</span>  <span class="o">=======</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="redtoolkit.scidata.dataframes.target_column">
+<code class="descname">target_column</code><span class="sig-paren">(</span><em>df: pandas.core.frame.DataFrame</em>, <em>col_name</em>, <em>targets</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/scidata/dataframes.html#target_column"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.scidata.dataframes.target_column" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a data frame creates a new column, where at n-th position there is a one in case a       word from target is present in the n-th element of the iterable and zero otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>) – The dataframe to add the column to.</p></li>
+<li><p><strong>col_name</strong> (<em>str</em>) – Iterable of strings.</p></li>
+<li><p><strong>targets</strong> (<em>list</em>) – List of the words that generate a one in the output.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="redtoolkit.scidata.dataframes.sparse_matrix_from_text">
+<code class="descname">sparse_matrix_from_text</code><span class="sig-paren">(</span><em>doc_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/scidata/dataframes.html#sparse_matrix_from_text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.scidata.dataframes.sparse_matrix_from_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns an input list of text, into a bag of words representation        stored in a sparse matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>doc_list</strong> (<em>list</em>) – list of strings.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A pair composed by scipy.sparse.csr_matrix matrix in the first entry, and a sklearn.CountVectorizer.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="redtoolkit.scidata.dataframes.target_values_vec">
+<code class="descname">target_values_vec</code><span class="sig-paren">(</span><em>doc_list</em>, <em>targets</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/scidata/dataframes.html#target_values_vec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.scidata.dataframes.target_values_vec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an iterable of strings returns a numpy array of the same length as the input one,     where at n-th position there is a one in case a word from target is present    in the n-th element of the iterable and zero otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>doc_list</strong> (<em>iterable</em>) – Iterable of strings.</p></li>
+<li><p><strong>targets</strong> (<em>list</em>) – List of the words that generate a one in the output.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Array built as in the description.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-redtoolkit.scidata.graphs">
+<span id="graphs"></span><h3>Graphs<a class="headerlink" href="#module-redtoolkit.scidata.graphs" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="redtoolkit.scidata.graphs.convert_df_to_graph">
+<code class="descname">convert_df_to_graph</code><span class="sig-paren">(</span><em>df</em>, <em>asymmetric=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/scidata/graphs.html#convert_df_to_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.scidata.graphs.convert_df_to_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turn a dataframe into a networkx graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – The dataframe to build the graph from.</p></li>
+<li><p><strong>asymmetric</strong> (<em>bool</em><em>, </em><em>optional</em>) – Determines whether the output is a symmetric or asymmetric. Defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The grph inferred from the dataframe.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>nx.Graph</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="redtoolkit.scidata.graphs.convert_adjacency_graph_to_df">
+<code class="descname">convert_adjacency_graph_to_df</code><span class="sig-paren">(</span><em>graph</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/scidata/graphs.html#convert_adjacency_graph_to_df"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.scidata.graphs.convert_adjacency_graph_to_df" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turn a nx.Graph in to a pandas dataframe where the first       two columns hold all the nodes, and the third one the weight of the graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>graph</strong> (<em>nx.Graph</em>) – the graoh to derive the dataframe from.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The dataframe as described in the function with columns=[“a”,”b”,”w”]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="redtoolkit.scidata.graphs.convert_df_to_adjacency_df">
+<code class="descname">convert_df_to_adjacency_df</code><span class="sig-paren">(</span><em>df</em>, <em>asymmetric=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/scidata/graphs.html#convert_df_to_adjacency_df"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.scidata.graphs.convert_df_to_adjacency_df" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns a df holding pairs of elements into one representing an adjacency matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – The dataframe of pairs to workwith.</p></li>
+<li><p><strong>asymmetric</strong> (<em>bool</em><em>, </em><em>optional</em>) – The type of adjacency matrix to infer. Defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The adjacency dataframe.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-redtoolkit.scidata.vectors">
+<span id="vectors"></span><h3>Vectors<a class="headerlink" href="#module-redtoolkit.scidata.vectors" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="redtoolkit.scidata.vectors.cosine_similarity">
+<code class="descname">cosine_similarity</code><span class="sig-paren">(</span><em>v1</em>, <em>v2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/scidata/vectors.html#cosine_similarity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.scidata.vectors.cosine_similarity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute cosine similarity of v1 to v2 as:</p>
+<div class="math notranslate nohighlight">
+\[\frac{(v1 \cdot v2)}{{||v1||*||v2||}}\]</div>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="text-analysis">
+<h2>Text Analysis<a class="headerlink" href="#text-analysis" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classifiers">
+<h3>Classifiers<a class="headerlink" href="#classifiers" title="Permalink to this headline">¶</a></h3>
+<p>This module takes into account different classification techniques discriminating:
+- ruleBased
+- statistical
+- Hybrid
+- Neural</p>
+<span class="target" id="module-redtoolkit.textanalysis.classifiers.bow_classifier"></span><dl class="class">
+<dt id="redtoolkit.textanalysis.classifiers.bow_classifier.AutomaticSentenceRecover">
+<em class="property">class </em><code class="descname">AutomaticSentenceRecover</code><span class="sig-paren">(</span><em>training_doclist, predicting_doclist, target_words, nlp, relevant_tags=['NOUN', 'VERB', 'ADJ']</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/textanalysis/classifiers/bow_classifier.html#AutomaticSentenceRecover"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.textanalysis.classifiers.bow_classifier.AutomaticSentenceRecover" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to perform a support vector machine on a bag of word representation of text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A class where all the steps of a classification process are joined together.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>class</p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="redtoolkit.textanalysis.classifiers.bow_classifier.AutomaticSentenceRecover.predict_new">
+<code class="descname">predict_new</code><span class="sig-paren">(</span><em>num_sentences</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/textanalysis/classifiers/bow_classifier.html#AutomaticSentenceRecover.predict_new"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.textanalysis.classifiers.bow_classifier.AutomaticSentenceRecover.predict_new" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predicts which sentences respect the patterns from the given predicting_doclist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>num_sentences</strong> (<em>int</em>) – Number of sentences to return</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of predicted sentences from the predicting_doclist.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="redtoolkit.textanalysis.classifiers.bow_classifier.AutomaticSentenceRecover.struct_data">
+<code class="descname">struct_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/textanalysis/classifiers/bow_classifier.html#AutomaticSentenceRecover.struct_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.textanalysis.classifiers.bow_classifier.AutomaticSentenceRecover.struct_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structures the data into a sparse matrix and a target vector for the training.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="redtoolkit.textanalysis.classifiers.bow_classifier.AutomaticSentenceRecover.train_classifier">
+<code class="descname">train_classifier</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/textanalysis/classifiers/bow_classifier.html#AutomaticSentenceRecover.train_classifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.textanalysis.classifiers.bow_classifier.AutomaticSentenceRecover.train_classifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>After splitting the dataset into train and test
+train a linear support vector machine on the dataset
+also writes accuracy, precision, recall, F1 in their respective
+instance variables.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="extractors">
+<h3>Extractors<a class="headerlink" href="#extractors" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="generators">
+<h3>Generators<a class="headerlink" href="#generators" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="module-redtoolkit.textanalysis.generators.synonyms">
+<span id="synonyms"></span><h4>Synonyms<a class="headerlink" href="#module-redtoolkit.textanalysis.generators.synonyms" title="Permalink to this headline">¶</a></h4>
+<dl class="function">
+<dt id="redtoolkit.textanalysis.generators.synonyms.generate_from_wordnet">
+<code class="descname">generate_from_wordnet</code><span class="sig-paren">(</span><em>word</em>, <em>lang='eng'</em>, <em>pos=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/textanalysis/generators/synonyms.html#generate_from_wordnet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.textanalysis.generators.synonyms.generate_from_wordnet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate all the synonyms from WordNet in the given language.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>word</strong> (<em>str</em>) – The word to search.</p></li>
+<li><p><strong>lang</strong> (<em>str</em><em>, </em><em>optional</em>) – The language of the word and the language of the synonyms to find out.
+Defaults to <code class="docutils literal notranslate"><span class="pre">eng</span></code>.</p></li>
+<li><p><strong>pos</strong> (<em>str</em><em>, </em><em>optional</em>) – The part-of-speech of the word to find out.
+Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>All synonyms found.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">generate_from_wordnet</span><span class="p">(</span><span class="s1">&#39;camminare&#39;</span><span class="p">,</span><span class="n">lang</span><span class="o">=</span><span class="s1">&#39;it&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">{</span><span class="s1">&#39;andare_a_piedi&#39;</span><span class="p">,</span> <span class="s1">&#39;percorrere_a_piedi&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="helpers">
+<h3>Helpers<a class="headerlink" href="#helpers" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="module-redtoolkit.textanalysis.helpers.converter">
+<span id="converter"></span><h4>Converter<a class="headerlink" href="#module-redtoolkit.textanalysis.helpers.converter" title="Permalink to this headline">¶</a></h4>
+<dl class="function">
+<dt id="redtoolkit.textanalysis.helpers.converter.any2wnpos">
+<code class="descname">any2wnpos</code><span class="sig-paren">(</span><em>postag</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/textanalysis/helpers/converter.html#any2wnpos"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.textanalysis.helpers.converter.any2wnpos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert <em>Universal POS tags</em> or <em>Penn Treebank POS tags</em> to <em>WordNet POS tags</em> format.
+If the given POS tag is a <em>WordNet POS tag</em>, it is returned as is.
+If the given POS tag is unsupported, <code class="docutils literal notranslate"><span class="pre">NIL</span></code> is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>postag</strong> (<em>str</em>) – <em>Universal POS tag</em> or <em>Penn Treebank POS tag</em> to convert.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>WordNet POS tag</em>, or <code class="docutils literal notranslate"><span class="pre">NIL</span></code> if unsupported.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="redtoolkit.textanalysis.helpers.converter.penn2unipos">
+<code class="descname">penn2unipos</code><span class="sig-paren">(</span><em>postag</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/textanalysis/helpers/converter.html#penn2unipos"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.textanalysis.helpers.converter.penn2unipos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert <em>Penn Treebank POS tags</em> to <em>Universal POS tags</em> format.
+If the given POS tag is unsupported, <code class="docutils literal notranslate"><span class="pre">NIL</span></code> is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>postag</strong> (<em>str</em>) – <em>Penn Treebank POS tag</em> to convert.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>Universal POS tag</em>, or <code class="docutils literal notranslate"><span class="pre">NIL</span></code> if unsupported.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-redtoolkit.textanalysis.helpers.despacy">
+<span id="despacy"></span><h4>Despacy<a class="headerlink" href="#module-redtoolkit.textanalysis.helpers.despacy" title="Permalink to this headline">¶</a></h4>
+<dl class="function">
+<dt id="redtoolkit.textanalysis.helpers.despacy.get_attributes_as_dict">
+<code class="descname">get_attributes_as_dict</code><span class="sig-paren">(</span><em>spacy_token</em>, <em>attrs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/textanalysis/helpers/despacy.html#get_attributes_as_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.textanalysis.helpers.despacy.get_attributes_as_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns <code class="xref py py-class docutils literal notranslate"><span class="pre">spacy.tokens.Token</span></code> attributes into a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>token</strong> (<em>spacy.tokens.Token</em>) – The token to take attributes from.</p></li>
+<li><p><strong>attrs</strong> (<em>list</em>) – Attributes to extract.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Key-valued attributes.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="redtoolkit.textanalysis.helpers.despacy.get_clean_text">
+<code class="descname">get_clean_text</code><span class="sig-paren">(</span><em>spacy_doc</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/textanalysis/helpers/despacy.html#get_clean_text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.textanalysis.helpers.despacy.get_clean_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns <code class="xref py py-class docutils literal notranslate"><span class="pre">spacy.tokens.Doc</span></code> into clean text where only lowered alphanumeric words are kept.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>spacy_doc</strong> (<em>spacy.tokens.Doc</em>) – <code class="docutils literal notranslate"><span class="pre">Doc</span></code> where to get clean text from.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Clean text.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="redtoolkit.textanalysis.helpers.despacy.get_clean_text_filtered_by_pos">
+<code class="descname">get_clean_text_filtered_by_pos</code><span class="sig-paren">(</span><em>spacy_doc</em>, <em>postags</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/textanalysis/helpers/despacy.html#get_clean_text_filtered_by_pos"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.textanalysis.helpers.despacy.get_clean_text_filtered_by_pos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns a <code class="xref py py-class docutils literal notranslate"><span class="pre">spacy.tokens.Doc</span></code> into clean text where only lowered alphanumeric words are kept,
+and words must be of specific POS tags only.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>spacy_doc</strong> (<em>spacy.tokens.doc</em>) – <code class="docutils literal notranslate"><span class="pre">Doc</span></code> where to get filtered text from.</p></li>
+<li><p><strong>postags</strong> (<em>list</em>) – POS tags to keep in text.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Clean text filtered by POS tags.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="redtoolkit.textanalysis.helpers.despacy.get_clean_text_filtered_by_attributions">
+<code class="descname">get_clean_text_filtered_by_attributions</code><span class="sig-paren">(</span><em>spacy_doc</em>, <em>attributions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/textanalysis/helpers/despacy.html#get_clean_text_filtered_by_attributions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.textanalysis.helpers.despacy.get_clean_text_filtered_by_attributions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns a <code class="xref py py-class docutils literal notranslate"><span class="pre">spacy.tokens.Doc</span></code> into clean text where only lowered alphanumeric words are kept,
+and tokens must have only allowed values for the attributes specified.
+An attribution can also be set as negative by prefixing a <cite>!</cite> to the attribute,
+hence its list of values will be considered as a blacklist.
+If no allowed value is given for an attribute, or its list is empty, all values are allowed.</p>
+<p>An example:
+.. code-block:: pycon</p>
+<blockquote>
+<div><dl class="simple">
+<dt>attributions = {</dt><dd><p>‘!text’: [‘invalid’, ‘the’, ‘a’],  # these won’t be taken
+‘<a href="#id1"><span class="problematic" id="id2">pos_</span></a>’: [‘NOUN’, ‘VERB’],  # these only will be taken
+‘<a href="#id3"><span class="problematic" id="id4">dep_</span></a>’: []  # all values will be valid</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>spacy_doc</strong> (<em>spacy.tokens.Doc</em>) – <code class="docutils literal notranslate"><span class="pre">Doc</span></code> where to get filtered text from.</p></li>
+<li><p><strong>attributions</strong> (<em>dict</em>) – Attributes key-valued to their list of allowed values.
+If an attribute is prefixed with a <cite>!</cite>, its list turns in not allowed values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Clean text filtered by tokens having only allowed values for the attribute specified.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-redtoolkit.textanalysis.helpers.splitter">
+<span id="splitter"></span><h4>Splitter<a class="headerlink" href="#module-redtoolkit.textanalysis.helpers.splitter" title="Permalink to this headline">¶</a></h4>
+<dl class="function">
+<dt id="redtoolkit.textanalysis.helpers.splitter.split_sentence_attaching_id">
+<code class="descname">split_sentence_attaching_id</code><span class="sig-paren">(</span><em>text</em>, <em>starting_id=''</em>, <em>splitter='\n\n'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/textanalysis/helpers/splitter.html#split_sentence_attaching_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.textanalysis.helpers.splitter.split_sentence_attaching_id" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>This function split a sentence according to a splitter element (default set as ‘</p>
+</div></blockquote>
+<dl>
+<dt>‘) and assign an id to the</dt><dd><p>sentences created. It starts indexing by enumerating the sentences from 00001.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>text (str): the string to be splitted in sentences
+starting_id (str, optional): The first part of the index assigned to the sentence. Defaults to ‘’.
+splitter (str, optional): The delimiter of splitting the text into sentences. Defaults to ‘</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>‘.</p>
+<blockquote>
+<div><dl class="simple">
+<dt>Returns:</dt><dd><p>dict: a dictionary containing as key the id of the sentence and as value the sentence splitted</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="similarities">
+<h3>Similarities<a class="headerlink" href="#similarities" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="module-redtoolkit.textanalysis.similarities.embeddings">
+<span id="embeddings"></span><h4>Embeddings<a class="headerlink" href="#module-redtoolkit.textanalysis.similarities.embeddings" title="Permalink to this headline">¶</a></h4>
+<dl class="function">
+<dt id="redtoolkit.textanalysis.similarities.embeddings.ranking_by_embeddings_from_gsheet">
+<code class="descname">ranking_by_embeddings_from_gsheet</code><span class="sig-paren">(</span><em>gsheet_id</em>, <em>model='spacy_medium'</em>, <em>parallelisation=1</em>, <em>column=None</em>, <em>sheet_name=None</em>, <em>limit=None</em>, <em>save_csv=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/textanalysis/similarities/embeddings.html#ranking_by_embeddings_from_gsheet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.textanalysis.similarities.embeddings.ranking_by_embeddings_from_gsheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a ranking by distance between each element in the given <em>gsheet</em>.
+This distance is calculated by considering the <em>cosine similarity</em>.
+If no <code class="docutils literal notranslate"><span class="pre">column</span></code> of the <em>gsheet</em> is specified, elements are taken from the first one.
+If no <code class="docutils literal notranslate"><span class="pre">sheet</span> <span class="pre">name</span></code> inside the <em>gsheet</em> is specified, only the first one is considered.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gsheet_id</strong> (<em>str</em>) – The ID of the <em>gsheet</em>.</p></li>
+<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – The <em>spaCy</em> model which to get word embeddings from. Defaults to <em>spacy_medium</em>.</p></li>
+<li><p><strong>parallelisation</strong> (<em>int</em><em>, </em><em>optional</em>) – The level of parallelisation: 1 for <em>multithreading</em>, 2 for <em>multiprocessing</em>.
+Defaults to parallelism.SOFT.</p></li>
+<li><p><strong>column</strong> (<em>str</em><em>, </em><em>optional</em>) – The column of the <em>gsheet</em> where to take elements from.
+Defaults to None.</p></li>
+<li><p><strong>sheet_name</strong> (<em>str</em><em>, </em><em>optional</em>) – The name of the <em>sheet</em> where to take elements from.
+Defaults to None.</p></li>
+<li><p><strong>limit</strong> (<em>int</em><em>, </em><em>optional</em>) – If specified, only first <em>limit</em> elements are ranked.
+Defaults to None.</p></li>
+<li><p><strong>save_csv</strong> (<em>str</em><em>, </em><em>optional</em>) – If specified, the ranking is saved in that CSV file.
+Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The first two columns specify the elements compared and the third one has their similarity score.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="redtoolkit.textanalysis.similarities.embeddings.ranking_by_embeddings_from_df">
+<code class="descname">ranking_by_embeddings_from_df</code><span class="sig-paren">(</span><em>df</em>, <em>model='spacy_medium'</em>, <em>parallelisation=1</em>, <em>column=None</em>, <em>limit=None</em>, <em>save_csv=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/textanalysis/similarities/embeddings.html#ranking_by_embeddings_from_df"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.textanalysis.similarities.embeddings.ranking_by_embeddings_from_df" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a ranking by distance between each element in the given <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>.
+This distance is calculated by considering the <em>cosine similarity</em>.
+If no <code class="docutils literal notranslate"><span class="pre">column</span></code> of the <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> is specified, elements are taken from the first one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – The <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> which to perform ranking to.</p></li>
+<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – The <em>spaCy</em> model which to get word embeddings from.
+Defaults to <em>spacy_medium</em>.</p></li>
+<li><p><strong>parallelisation</strong> (<em>int</em><em>, </em><em>optional</em>) – The level of parallelisation: 1 for <em>multithreading</em>, 2 for <em>multiprocessing</em>.
+Defaults to parallelism.SOFT.</p></li>
+<li><p><strong>column</strong> (<em>str</em><em>, </em><em>optional</em>) – The column of the dataframe where to take elements from.
+Defaults to None.</p></li>
+<li><p><strong>limit</strong> (<em>int</em><em>, </em><em>optional</em>) – If specified, only first <em>limit</em> elements are ranked.
+Defaults to None.</p></li>
+<li><p><strong>save_csv</strong> (<em>str</em><em>, </em><em>optional</em>) – If specified, the ranking is saved in that CSV file.
+Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The first two columns specify the elements compared and the third one has their similarity score.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-redtoolkit.textanalysis.similarities.wordnet">
+<span id="wordnet"></span><h4>WordNet<a class="headerlink" href="#module-redtoolkit.textanalysis.similarities.wordnet" title="Permalink to this headline">¶</a></h4>
+<dl class="function">
+<dt id="redtoolkit.textanalysis.similarities.wordnet.ranking_by_wordnet_from_gsheet">
+<code class="descname">ranking_by_wordnet_from_gsheet</code><span class="sig-paren">(</span><em>gsheet_id</em>, <em>parallelisation=1</em>, <em>column=None</em>, <em>sheet_name=None</em>, <em>limit=None</em>, <em>save_csv=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/textanalysis/similarities/wordnet.html#ranking_by_wordnet_from_gsheet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.textanalysis.similarities.wordnet.ranking_by_wordnet_from_gsheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a ranking by distance between each element in the given <em>gsheet</em>.
+This distance is calculated by considering the number of common synonyms taken from <em>WordNet</em>.
+If no <code class="docutils literal notranslate"><span class="pre">column</span></code> of the gsheet is specified, elements are taken from the first one.
+If no <code class="docutils literal notranslate"><span class="pre">sheet</span> <span class="pre">name</span></code> inside the gsheet is specified, only the first one is considered.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gsheet_id</strong> (<em>str</em>) – The ID of the <em>gsheet</em>.</p></li>
+<li><p><strong>parallelisation</strong> (<em>int</em><em>, </em><em>optional</em>) – The level of parallelisation: 1 for <em>multithreading</em>, 2 for <em>multiprocessing</em>.
+Defaults to parallelism.SOFT.</p></li>
+<li><p><strong>column</strong> (<em>str</em><em>, </em><em>optional</em>) – The column of the gsheet where to take elements from.
+Defaults to None.</p></li>
+<li><p><strong>sheet_name</strong> (<em>str</em><em>, </em><em>optional</em>) – The name of the sheet where to take elements from.
+Defaults to None.</p></li>
+<li><p><strong>limit</strong> (<em>int</em><em>, </em><em>optional</em>) – If specified, only first <em>limit</em> elements are ranked.
+Defaults to None.</p></li>
+<li><p><strong>save_csv</strong> (<em>str</em><em>, </em><em>optional</em>) – If specified, the ranking is saved in that CSV file.
+Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The first two columns specify the elements compared and the third one has their similarity score.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="redtoolkit.textanalysis.similarities.wordnet.ranking_by_wordnet_from_df">
+<code class="descname">ranking_by_wordnet_from_df</code><span class="sig-paren">(</span><em>df</em>, <em>parallelisation=1</em>, <em>column=None</em>, <em>limit=None</em>, <em>save_csv=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/textanalysis/similarities/wordnet.html#ranking_by_wordnet_from_df"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.textanalysis.similarities.wordnet.ranking_by_wordnet_from_df" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a ranking by distance between each element in the given <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>.
+This distance is calculated by considering the number of common synonyms taken from <em>WordNet</em>.
+If no <code class="docutils literal notranslate"><span class="pre">column</span></code> of the gsheet is specified, elements are taken from the first one.
+If no <code class="docutils literal notranslate"><span class="pre">sheet</span> <span class="pre">name</span></code> inside the gsheet is specified, only the first one is considered.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – The <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> which to perform ranking to.</p></li>
+<li><p><strong>parallelisation</strong> (<em>int</em><em>, </em><em>optional</em>) – The level of parallelisation: 1 for <em>multithreading</em>, 2 for <em>multiprocessing</em>.
+Defaults to parallelism.SOFT.</p></li>
+<li><p><strong>column</strong> (<em>str</em><em>, </em><em>optional</em>) – The column of the <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> where to take elements from.
+Defaults to None.</p></li>
+<li><p><strong>limit</strong> (<em>int</em><em>, </em><em>optional</em>) – If specified, only first <em>limit</em> elements are ranked.
+Defaults to None.</p></li>
+<li><p><strong>save_csv</strong> (<em>str</em><em>, </em><em>optional</em>) – If specified, the ranking is saved in that CSV file.
+Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The first two columns specify the elements compared and the third one has their similarity score.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+</div>
+<div class="section" id="utilities">
+<h2>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-redtoolkit.utils.exporters">
+<span id="exporters"></span><h3>Exporters<a class="headerlink" href="#module-redtoolkit.utils.exporters" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="module-redtoolkit.utils.importers">
+<span id="importers"></span><h3>Importers<a class="headerlink" href="#module-redtoolkit.utils.importers" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="redtoolkit.utils.importers.get_df_from_gsheet">
+<code class="descname">get_df_from_gsheet</code><span class="sig-paren">(</span><em>gsheet_id</em>, <em>sheet_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/utils/importers.html#get_df_from_gsheet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.utils.importers.get_df_from_gsheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import a <em>gsheet</em> by ID as a <em>dataframe</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gsheet_id</strong> (<em>str</em>) – The ID of the <em>gsheet</em>.</p></li>
+<li><p><strong>sheet_name</strong> (<em>str</em><em>, </em><em>optional</em>) – name of the <em>sheet</em> where to take elements from. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a <em>dataframe</em> containing all imported data from the <em>gsheet</em>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-redtoolkit.utils.parallelism">
+<span id="parallelism"></span><h3>Parallelism<a class="headerlink" href="#module-redtoolkit.utils.parallelism" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="redtoolkit.utils.parallelism.WorkersPool">
+<em class="property">class </em><code class="descname">WorkersPool</code><span class="sig-paren">(</span><em>level=1</em>, <em>size=-1</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/utils/parallelism.html#WorkersPool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.utils.parallelism.WorkersPool" title="Permalink to this definition">¶</a></dt>
+<dd><p>An optimized <code class="xref py py-class docutils literal notranslate"><span class="pre">joblib.Parallel</span></code> class for performing parallelized tasks.
+It is made easier to select the parallelisation level and the size of the pool.</p>
+<dl class="method">
+<dt id="redtoolkit.utils.parallelism.WorkersPool.perform_job">
+<code class="descname">perform_job</code><span class="sig-paren">(</span><em>items</em>, <em>task</em>, <em>*task_args</em>, <em>**task_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/utils/parallelism.html#WorkersPool.perform_job"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.utils.parallelism.WorkersPool.perform_job" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a task to each element of a set of items in parallel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>items</strong> (<em>list</em>) – A set of elements which to perform a task to.</p></li>
+<li><p><strong>task</strong> (<em>function</em>) – A function which will be applied to each element.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Contains any returned output from each task performed.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="redtoolkit.utils.parallelism.hire">
+<code class="descname">hire</code><span class="sig-paren">(</span><em>level=1</em>, <em>n_workers=-1</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/utils/parallelism.html#hire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.utils.parallelism.hire" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a <a class="reference internal" href="#redtoolkit.utils.parallelism.WorkersPool" title="redtoolkit.utils.parallelism.WorkersPool"><code class="xref py py-class docutils literal notranslate"><span class="pre">WorkersPool</span></code></a> with a number of <code class="docutils literal notranslate"><span class="pre">n_workers</span></code> ready for a job.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>level</strong> (<em>int</em><em>, </em><em>optional</em>) – The level of parallalisation: 1 for <em>multithreading</em>, 2 for <em>multiprocessing</em>.
+Defaults to SOFT.</p></li>
+<li><p><strong>n_workers</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of workers that will work simultaneously.
+If <code class="docutils literal notranslate"><span class="pre">level</span></code> is <code class="docutils literal notranslate"><span class="pre">SOFT</span></code>, the best value is the max number of threads supported by the CPU.
+If <code class="docutils literal notranslate"><span class="pre">level</span></code> is <code class="docutils literal notranslate"><span class="pre">HARD</span></code>, the best value is the number of cores the CPU has.
+Defaults to -1 (automatically get <em>cores count</em> workers).</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em><em>, </em><em>optional</em>) – Activate a verbosity. It gives progress visual feedbacks.
+Defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">WorkerPool</span></code> ready for a job.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#redtoolkit.utils.parallelism.WorkersPool" title="redtoolkit.utils.parallelism.WorkersPool">WorkersPool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="redtoolkit.utils.parallelism.perform_job">
+<code class="descname">perform_job</code><span class="sig-paren">(</span><em>items</em>, <em>task</em>, <em>level=1</em>, <em>n_workers=-1</em>, <em>verbose=False</em>, <em>*task_args</em>, <em>**task_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/redtoolkit/utils/parallelism.html#perform_job"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#redtoolkit.utils.parallelism.perform_job" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a task to each element of a set of items in parallel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>items</strong> (<em>list</em>) – A set of elements which to perform a task to.</p></li>
+<li><p><strong>task</strong> (<em>function</em>) – A function which will be applied to each element.</p></li>
+<li><p><strong>level</strong> (<em>int</em><em>, </em><em>optional</em>) – The level of parallalisation: 1 for <em>multithreading</em>, 2 for <em>multiprocessing</em>.
+Defaults to SOFT.</p></li>
+<li><p><strong>n_workers</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of workers that will work simultaneously.
+If <code class="docutils literal notranslate"><span class="pre">level</span></code> is <code class="docutils literal notranslate"><span class="pre">SOFT</span></code>, the best value is the max number of threads supported by the CPU.
+If <code class="docutils literal notranslate"><span class="pre">level</span></code> is <code class="docutils literal notranslate"><span class="pre">HARD</span></code>, the best value is the number of cores the CPU has.
+Defaults to -1 (automatically get <em>cores count</em> workers).</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em><em>, </em><em>optional</em>) – Activate a verbosity. It gives progress visual feedbacks.
+Defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Contains any returned output from each task performed.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-redtoolkit.utils.spacy">
+<span id="spacy"></span><h3>spaCy<a class="headerlink" href="#module-redtoolkit.utils.spacy" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="visualization">
+<h2>Visualization<a class="headerlink" href="#visualization" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="wrappers">
+<h2>Wrappers<a class="headerlink" href="#wrappers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mooc">
+<h3>MOOC<a class="headerlink" href="#mooc" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="module-redtoolkit.wrappers.mooc.coursera">
+<span id="coursera"></span><h4>Coursera<a class="headerlink" href="#module-redtoolkit.wrappers.mooc.coursera" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="changelog.html" class="btn btn-neutral float-right" title="Changelog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="getting_started/quickstart.html" class="btn btn-neutral float-left" title="Quickstart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Erre Quadro RED
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

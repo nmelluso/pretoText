@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>redtoolkit.textanalysis.similarities.wordnet &mdash; RED Toolkit 0+untagged.60.g0950654.dirty documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> RED Toolkit
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0+untagged.60.g0950654
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">RED Toolkit</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>redtoolkit.textanalysis.similarities.wordnet</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for redtoolkit.textanalysis.similarities.wordnet</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">partial</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="k">import</span> <span class="n">wordnet</span> <span class="k">as</span> <span class="n">wn</span>
+<span class="kn">from</span> <span class="nn">redtoolkit.scidata</span> <span class="k">import</span> <span class="n">graphs</span>
+<span class="kn">from</span> <span class="nn">redtoolkit.utils</span> <span class="k">import</span> <span class="n">importers</span>
+<span class="kn">from</span> <span class="nn">redtoolkit.utils</span> <span class="k">import</span> <span class="n">parallelism</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ranking_by_wordnet_from_gsheet&quot;</span><span class="p">,</span> <span class="s2">&quot;ranking_by_wordnet_from_df&quot;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="ranking_by_wordnet_from_gsheet"><a class="viewcode-back" href="../../../../api_reference.html#redtoolkit.textanalysis.similarities.wordnet.ranking_by_wordnet_from_gsheet">[docs]</a><span class="k">def</span> <span class="nf">ranking_by_wordnet_from_gsheet</span><span class="p">(</span>
+    <span class="n">gsheet_id</span><span class="p">,</span>
+    <span class="n">parallelisation</span><span class="o">=</span><span class="n">parallelism</span><span class="o">.</span><span class="n">SOFT</span><span class="p">,</span>
+    <span class="n">column</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">sheet_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">save_csv</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Perform a ranking by distance between each element in the given *gsheet*.</span>
+<span class="sd">    This distance is calculated by considering the number of common synonyms taken from *WordNet*.</span>
+<span class="sd">    If no ``column`` of the gsheet is specified, elements are taken from the first one.</span>
+<span class="sd">    If no ``sheet name`` inside the gsheet is specified, only the first one is considered.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        gsheet_id (str): </span>
+<span class="sd">            The ID of the *gsheet*.</span>
+<span class="sd">        parallelisation (int, optional): </span>
+<span class="sd">            The level of parallelisation: 1 for *multithreading*, 2 for *multiprocessing*. </span>
+<span class="sd">            Defaults to parallelism.SOFT.</span>
+<span class="sd">        column (str, optional): </span>
+<span class="sd">            The column of the gsheet where to take elements from. </span>
+<span class="sd">            Defaults to None.</span>
+<span class="sd">        sheet_name (str, optional): </span>
+<span class="sd">            The name of the sheet where to take elements from. </span>
+<span class="sd">            Defaults to None.</span>
+<span class="sd">        limit (int, optional): </span>
+<span class="sd">            If specified, only first *limit* elements are ranked. </span>
+<span class="sd">            Defaults to None.</span>
+<span class="sd">        save_csv (str, optional): </span>
+<span class="sd">            If specified, the ranking is saved in that CSV file. </span>
+<span class="sd">            Defaults to None.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        :class:`pandas.DataFrame`:</span>
+<span class="sd">            The first two columns specify the elements compared and the third one has their similarity score.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ranking_by_wordnet_from_df</span><span class="p">(</span>
+        <span class="n">importers</span><span class="o">.</span><span class="n">get_df_from_gsheet</span><span class="p">(</span><span class="n">gsheet_id</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="n">sheet_name</span><span class="p">),</span>
+        <span class="n">parallelisation</span><span class="o">=</span><span class="n">parallelisation</span><span class="p">,</span>
+        <span class="n">column</span><span class="o">=</span><span class="n">column</span><span class="p">,</span>
+        <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span>
+        <span class="n">save_csv</span><span class="o">=</span><span class="n">save_csv</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ranking_by_wordnet_from_df"><a class="viewcode-back" href="../../../../api_reference.html#redtoolkit.textanalysis.similarities.wordnet.ranking_by_wordnet_from_df">[docs]</a><span class="k">def</span> <span class="nf">ranking_by_wordnet_from_df</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span> <span class="n">parallelisation</span><span class="o">=</span><span class="n">parallelism</span><span class="o">.</span><span class="n">SOFT</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_csv</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Perform a ranking by distance between each element in the given :class:`pandas.DataFrame`.</span>
+<span class="sd">    This distance is calculated by considering the number of common synonyms taken from *WordNet*.</span>
+<span class="sd">    If no ``column`` of the gsheet is specified, elements are taken from the first one.</span>
+<span class="sd">    If no ``sheet name`` inside the gsheet is specified, only the first one is considered.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pandas.DataFrame): </span>
+<span class="sd">            The :class:`pandas.DataFrame` which to perform ranking to.</span>
+<span class="sd">        parallelisation (int, optional): </span>
+<span class="sd">            The level of parallelisation: 1 for *multithreading*, 2 for *multiprocessing*. </span>
+<span class="sd">            Defaults to parallelism.SOFT.</span>
+<span class="sd">        column (str, optional): </span>
+<span class="sd">            The column of the :class:`pandas.DataFrame` where to take elements from. </span>
+<span class="sd">            Defaults to None.</span>
+<span class="sd">        limit (int, optional): </span>
+<span class="sd">            If specified, only first *limit* elements are ranked. </span>
+<span class="sd">            Defaults to None.</span>
+<span class="sd">        save_csv (str, optional): </span>
+<span class="sd">            If specified, the ranking is saved in that CSV file. </span>
+<span class="sd">            Defaults to None.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        :class:`pandas.DataFrame`: </span>
+<span class="sd">            The first two columns specify the elements compared and the third one has their similarity score.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">column</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">limit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">limit</span><span class="p">)</span>
+
+    <span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">itertuples</span><span class="p">()]</span>
+
+    <span class="k">if</span> <span class="n">parallelisation</span> <span class="o">==</span> <span class="n">parallelism</span><span class="o">.</span><span class="n">WorkerLevel</span><span class="o">.</span><span class="n">HARD</span><span class="p">:</span>
+        <span class="c1"># force wordnet to be loaded for multiprocessing</span>
+        <span class="n">wn</span><span class="o">.</span><span class="n">ensure_loaded</span><span class="p">()</span>
+
+    <span class="n">task</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">_iteration_task</span><span class="p">,</span> <span class="n">items</span><span class="o">=</span><span class="n">items</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">parallelism</span><span class="o">.</span><span class="n">perform_job</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">parallelisation</span><span class="p">)</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">graphs</span><span class="o">.</span><span class="n">convert_df_to_adjacency_df</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+    <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">save_csv</span><span class="p">:</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">save_csv</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+<span class="k">def</span> <span class="nf">_iteration_task</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">items</span><span class="p">):</span>
+
+    <span class="n">a_syns</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">lower</span><span class="p">()):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">syns</span> <span class="o">=</span> <span class="n">wn</span><span class="o">.</span><span class="n">synsets</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="n">a_syns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">syns</span><span class="p">))</span>
+
+    <span class="n">row</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="n">item</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="n">row</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">syns</span> <span class="ow">in</span> <span class="n">a_syns</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">lower</span><span class="p">()):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">b_syns</span> <span class="o">=</span> <span class="n">wn</span><span class="o">.</span><span class="n">synsets</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+                <span class="n">row</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">syns</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">b_syns</span><span class="p">)))</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">])</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Erre Quadro RED
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
