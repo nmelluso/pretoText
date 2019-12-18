@@ -9,11 +9,11 @@ import versioneer
 
 
 # Package meta-data.
-NAME = "redtoolkit"
-DESCRIPTION = "A toolkit for boosting R&D."
-URL = "https://bitbucket.org/errequadro_red/red-toolkit"
-EMAIL = "arduin.paolo@gmail.com"
-AUTHOR = "Paolo Arduin"
+NAME = "pretoText"
+DESCRIPTION = "NLP toolkit for Technical Texts"
+URL = "https://github.com/nicolamelluso/pretoText"
+EMAIL = "nicolamelluso@gmail.com"
+AUTHOR = "Nicola Melluso"
 REQUIRES_PYTHON = ">=3.6.0"
 VERSION = versioneer.get_version()
 

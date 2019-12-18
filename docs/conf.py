@@ -20,9 +20,9 @@ import redtoolkit
 
 # -- Project information -----------------------------------------------------
 
-project = "RED Toolkit"
-copyright = "2019, Erre Quadro RED"
-author = "Erre Quadro RED"
+project = "pretoText - NLP toolkit for Technical Texts"
+copyright = "2019, Nicola Melluso"
+author = "Nicola Melluso"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
