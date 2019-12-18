@@ -5,12 +5,12 @@ if __name__ == "__main__":
     # fix root module importing
     sys.path.append(dirname("."))
 
-    from redtoolkit.textanalysis import embeddings
-    from redtoolkit.textanalysis import wordnet
-    from redtoolkit.textanalysis import synonyms
-    from redtoolkit.utils import spacy
-    from redtoolkit.wrappers import mooc
-    from redtoolkit.wrappers import wikipedia
+    from pretoText.textanalysis import embeddings
+    from pretoText.textanalysis import wordnet
+    from pretoText.textanalysis import synonyms
+    from pretoText.utils import spacy
+    from pretoText.wrappers import mooc
+    from pretoText.wrappers import wikipedia
     import fire
 
     # Commands exposed to CLI

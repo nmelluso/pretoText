@@ -4,11 +4,11 @@
 
 import lazy_import
 
-lazy_import.lazy_module("redtoolkit.scidata")
-lazy_import.lazy_module("redtoolkit.textanalysis")
-lazy_import.lazy_module("redtoolkit.utils")
-lazy_import.lazy_module("redtoolkit.visualizers")
-lazy_import.lazy_module("redtoolkit.wrappers")
+lazy_import.lazy_module("pretoText.scidata")
+lazy_import.lazy_module("pretoText.textanalysis")
+lazy_import.lazy_module("pretoText.utils")
+lazy_import.lazy_module("pretoText.visualizers")
+lazy_import.lazy_module("pretoText.wrappers")
 
 
 # import top level modules
