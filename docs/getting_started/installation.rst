@@ -8,7 +8,7 @@ Using pip
 
 ::
 
-    pip install git+https://bitbucket.org/errequadro-red/redtoolkit.git
+    pip install git+https://bitbucket.org/errequadro-red/pretoText.git
 
 
 Using pipenv
@@ -19,7 +19,7 @@ From CLI
 
 ::
 
-    pipenv install -e git+https://bitbucket.org/errequadro-red/redtoolkit.git#egg=redtoolkit
+    pipenv install -e git+https://bitbucket.org/errequadro-red/pretoText.git#egg=pretoText
 
 
 From Pipfile
@@ -28,7 +28,7 @@ From Pipfile
 ::
 
     [packages]
-    redtoolkit = {git = "https://bitbucket.org/errequadro-red/redtoolkit.git", editable = true}
+    pretoText = {git = "https://bitbucket.org/errequadro-red/pretoText.git", editable = true}
 
 
 Using manual setup
@@ -36,7 +36,7 @@ Using manual setup
 
 Clone the repository in a folder::
 
-    git clone https://bitbucket.org/errequadro-red/redtoolkit.git
+    git clone https://bitbucket.org/errequadro-red/pretoText.git
 
 Then start the setup::
 
@@ -52,4 +52,4 @@ Using pip
 
     # Install a pip package in the current Jupyter kernel
     import sys
-    !{sys.executable} -m pip install https://bitbucket.org/errequadro-red/redtoolkit.git
+    !{sys.executable} -m pip install https://bitbucket.org/errequadro-red/pretoText.git

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>redtoolkit.utils.parallelism &mdash; RED Toolkit 0+untagged.60.g0950654.dirty documentation</title>
+  <title>pretoText.utils.parallelism &mdash; RED Toolkit 0+untagged.60.g0950654.dirty documentation</title>
   
 
   
@@ -136,7 +136,7 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>redtoolkit.utils.parallelism</li>
+      <li>pretoText.utils.parallelism</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -151,7 +151,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for redtoolkit.utils.parallelism</h1><div class="highlight"><pre>
+  <h1>Source code for pretoText.utils.parallelism</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">joblib</span> <span class="k">import</span> <span class="n">delayed</span><span class="p">,</span> <span class="n">Parallel</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
 
@@ -161,7 +161,7 @@
 <span class="n">HARD_SMART</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># parallelism by loky</span>
 
 
-<div class="viewcode-block" id="WorkersPool"><a class="viewcode-back" href="../../../api_reference.html#redtoolkit.utils.parallelism.WorkersPool">[docs]</a><span class="k">class</span> <span class="nc">WorkersPool</span><span class="p">(</span><span class="n">Parallel</span><span class="p">):</span>
+<div class="viewcode-block" id="WorkersPool"><a class="viewcode-back" href="../../../api_reference.html#pretoText.utils.parallelism.WorkersPool">[docs]</a><span class="k">class</span> <span class="nc">WorkersPool</span><span class="p">(</span><span class="n">Parallel</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    An optimized :class:`joblib.Parallel` class for performing parallelized tasks.</span>
 <span class="sd">    It is made easier to select the parallelisation level and the size of the pool.</span>
@@ -183,7 +183,7 @@
             <span class="n">verbose</span><span class="o">=</span><span class="mi">100</span> <span class="k">if</span> <span class="n">verbose</span> <span class="k">else</span> <span class="mi">0</span><span class="p">,</span>
         <span class="p">)</span>
 
-<div class="viewcode-block" id="WorkersPool.perform_job"><a class="viewcode-back" href="../../../api_reference.html#redtoolkit.utils.parallelism.WorkersPool.perform_job">[docs]</a>    <span class="k">def</span> <span class="nf">perform_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="o">*</span><span class="n">task_args</span><span class="p">,</span> <span class="o">**</span><span class="n">task_kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="WorkersPool.perform_job"><a class="viewcode-back" href="../../../api_reference.html#pretoText.utils.parallelism.WorkersPool.perform_job">[docs]</a>    <span class="k">def</span> <span class="nf">perform_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="o">*</span><span class="n">task_args</span><span class="p">,</span> <span class="o">**</span><span class="n">task_kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Perform a task to each element of a set of items in parallel.</span>
 <span class="sd">        </span>
@@ -202,7 +202,7 @@
         <span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="hire"><a class="viewcode-back" href="../../../api_reference.html#redtoolkit.utils.parallelism.hire">[docs]</a><span class="k">def</span> <span class="nf">hire</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">SOFT</span><span class="p">,</span> <span class="n">n_workers</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="hire"><a class="viewcode-back" href="../../../api_reference.html#pretoText.utils.parallelism.hire">[docs]</a><span class="k">def</span> <span class="nf">hire</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">SOFT</span><span class="p">,</span> <span class="n">n_workers</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get a :class:`WorkersPool` with a number of ``n_workers`` ready for a job.</span>
 <span class="sd">    </span>
@@ -225,7 +225,7 @@
     <span class="k">return</span> <span class="n">WorkersPool</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_workers</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="perform_job"><a class="viewcode-back" href="../../../api_reference.html#redtoolkit.utils.parallelism.perform_job">[docs]</a><span class="k">def</span> <span class="nf">perform_job</span><span class="p">(</span>
+<div class="viewcode-block" id="perform_job"><a class="viewcode-back" href="../../../api_reference.html#pretoText.utils.parallelism.perform_job">[docs]</a><span class="k">def</span> <span class="nf">perform_job</span><span class="p">(</span>
     <span class="n">items</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">SOFT</span><span class="p">,</span> <span class="n">n_workers</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">*</span><span class="n">task_args</span><span class="p">,</span> <span class="o">**</span><span class="n">task_kwargs</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>

@@ -6,7 +6,7 @@ Initialisation
 
 Clone the RED Toolkit repository into your favorite folder::
 
-    git clone https://bitbucket.org/errequadro-red/redtoolkit.git
+    git clone https://bitbucket.org/errequadro-red/pretoText.git
 
 
 Afterwards, it's a good habit to install all requested packages inside a Python virtual environment. This can be done by using virtualenv or pipenv.
@@ -41,7 +41,7 @@ RED Toolkit uses [Black](https://github.com/python/black) for an automated code 
 
 ::
 
-    black redtoolkit
+    black pretoText
 
 
 Tests Coverage
@@ -49,7 +49,7 @@ Tests Coverage
 
 In order to run a full code tests coverage task::
 
-    coverage run --omit=tests/ redtoolkit/
+    coverage run --omit=tests/ pretoText/
 
 Reports can be created by::
 

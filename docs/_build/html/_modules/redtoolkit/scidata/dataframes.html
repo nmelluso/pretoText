@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>redtoolkit.scidata.dataframes &mdash; RED Toolkit 0+untagged.60.g0950654.dirty documentation</title>
+  <title>pretoText.scidata.dataframes &mdash; RED Toolkit 0+untagged.60.g0950654.dirty documentation</title>
   
 
   
@@ -136,7 +136,7 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>redtoolkit.scidata.dataframes</li>
+      <li>pretoText.scidata.dataframes</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -151,7 +151,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for redtoolkit.scidata.dataframes</h1><div class="highlight"><pre>
+  <h1>Source code for pretoText.scidata.dataframes</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -167,7 +167,7 @@
 <span class="p">]</span>
 
 
-<div class="viewcode-block" id="spread_col"><a class="viewcode-back" href="../../../api_reference.html#redtoolkit.scidata.dataframes.spread_col">[docs]</a><span class="k">def</span> <span class="nf">spread_col</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">col_name</span><span class="p">):</span>
+<div class="viewcode-block" id="spread_col"><a class="viewcode-back" href="../../../api_reference.html#pretoText.scidata.dataframes.spread_col">[docs]</a><span class="k">def</span> <span class="nf">spread_col</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">col_name</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Adds a number of columns equal to the number of values of the column ``col_name``.\</span>
 <span class="sd">       Each of these new columns has a one at a row if that given row has that value in ``col_name``\</span>
 <span class="sd">       and a zero otherwise.</span>
@@ -217,7 +217,7 @@
     <span class="k">return</span> <span class="n">output</span></div>
 
 
-<div class="viewcode-block" id="column_shift"><a class="viewcode-back" href="../../../api_reference.html#redtoolkit.scidata.dataframes.column_shift">[docs]</a><span class="k">def</span> <span class="nf">column_shift</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">col_name</span><span class="p">,</span> <span class="n">shift_len</span><span class="p">,</span> <span class="n">absolute_value</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="column_shift"><a class="viewcode-back" href="../../../api_reference.html#pretoText.scidata.dataframes.column_shift">[docs]</a><span class="k">def</span> <span class="nf">column_shift</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">col_name</span><span class="p">,</span> <span class="n">shift_len</span><span class="p">,</span> <span class="n">absolute_value</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Adds a columns to the dataframe which is an old one shifted by a signed shift forward or backward,\</span>
 <span class="sd">       if the absolute value parameter is set to True the new column is the sum of the shift backward and \</span>
 <span class="sd">       forward of length shift len where all nonzero values are replaced by the value one.</span>
@@ -275,7 +275,7 @@
         <span class="n">df</span><span class="p">[</span><span class="n">col_name</span> <span class="o">+</span> <span class="s2">&quot;_abs_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">shift_len</span><span class="p">))]</span> <span class="o">=</span> <span class="n">abs_shifted</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="target_column"><a class="viewcode-back" href="../../../api_reference.html#redtoolkit.scidata.dataframes.target_column">[docs]</a><span class="k">def</span> <span class="nf">target_column</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">col_name</span><span class="p">,</span> <span class="n">targets</span><span class="p">):</span>
+<div class="viewcode-block" id="target_column"><a class="viewcode-back" href="../../../api_reference.html#pretoText.scidata.dataframes.target_column">[docs]</a><span class="k">def</span> <span class="nf">target_column</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">col_name</span><span class="p">,</span> <span class="n">targets</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Given a data frame creates a new column, where at n-th position there is a one in case a\</span>
 <span class="sd">       word from target is present in the n-th element of the iterable and zero otherwise.</span>
 <span class="sd">    </span>
@@ -288,7 +288,7 @@
     <span class="n">df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">target_col</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="sparse_matrix_from_text"><a class="viewcode-back" href="../../../api_reference.html#redtoolkit.scidata.dataframes.sparse_matrix_from_text">[docs]</a><span class="k">def</span> <span class="nf">sparse_matrix_from_text</span><span class="p">(</span><span class="n">doc_list</span><span class="p">):</span>
+<div class="viewcode-block" id="sparse_matrix_from_text"><a class="viewcode-back" href="../../../api_reference.html#pretoText.scidata.dataframes.sparse_matrix_from_text">[docs]</a><span class="k">def</span> <span class="nf">sparse_matrix_from_text</span><span class="p">(</span><span class="n">doc_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Turns an input list of text, into a bag of words representation \</span>
 <span class="sd">       stored in a sparse matrix.</span>
 <span class="sd">    </span>
@@ -304,7 +304,7 @@
     <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">vectorizer</span></div>
 
 
-<div class="viewcode-block" id="target_values_vec"><a class="viewcode-back" href="../../../api_reference.html#redtoolkit.scidata.dataframes.target_values_vec">[docs]</a><span class="k">def</span> <span class="nf">target_values_vec</span><span class="p">(</span><span class="n">doc_list</span><span class="p">,</span> <span class="n">targets</span><span class="p">):</span>
+<div class="viewcode-block" id="target_values_vec"><a class="viewcode-back" href="../../../api_reference.html#pretoText.scidata.dataframes.target_values_vec">[docs]</a><span class="k">def</span> <span class="nf">target_values_vec</span><span class="p">(</span><span class="n">doc_list</span><span class="p">,</span> <span class="n">targets</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Given an iterable of strings returns a numpy array of the same length as the input one, \</span>
 <span class="sd">    where at n-th position there is a one in case a word from target is present\</span>
 <span class="sd">    in the n-th element of the iterable and zero otherwise.</span>

@@ -15,7 +15,7 @@ import sys
 
 sys.path.insert(0, "../")
 
-import redtoolkit
+import pretoText
 
 
 # -- Project information -----------------------------------------------------
@@ -29,7 +29,7 @@ author = "Nicola Melluso"
 # built documents.
 #
 # The full version, including alpha/beta/rc tags.
-release = redtoolkit.__version__
+release = pretoText.__version__
 # The short X.Y version.
 version = release.rsplit(".", 1)[0]
 

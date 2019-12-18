@@ -4,19 +4,7 @@
 
 import lazy_import
 
-lazy_import.lazy_module("pretoText.scidata")
-lazy_import.lazy_module("pretoText.textanalysis")
-lazy_import.lazy_module("pretoText.utils")
-lazy_import.lazy_module("pretoText.visualizers")
-lazy_import.lazy_module("pretoText.wrappers")
-
-
-# import top level modules
-# from redtoolkit import scidata
-# from redtoolkit import textanalysis
-# from redtoolkit import utils
-# from redtoolkit import visualizers
-# from redtoolkit import wrappers
+lazy_import.lazy_module("pretoText.Patent")
 
 # version
 from ._version import get_versions

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>redtoolkit.scidata.graphs &mdash; RED Toolkit 0+untagged.60.g0950654.dirty documentation</title>
+  <title>pretoText.scidata.graphs &mdash; RED Toolkit 0+untagged.60.g0950654.dirty documentation</title>
   
 
   
@@ -136,7 +136,7 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>redtoolkit.scidata.graphs</li>
+      <li>pretoText.scidata.graphs</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -151,7 +151,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for redtoolkit.scidata.graphs</h1><div class="highlight"><pre>
+  <h1>Source code for pretoText.scidata.graphs</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
@@ -163,7 +163,7 @@
 <span class="p">]</span>
 
 
-<div class="viewcode-block" id="convert_df_to_graph"><a class="viewcode-back" href="../../../api_reference.html#redtoolkit.scidata.graphs.convert_df_to_graph">[docs]</a><span class="k">def</span> <span class="nf">convert_df_to_graph</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">asymmetric</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="convert_df_to_graph"><a class="viewcode-back" href="../../../api_reference.html#pretoText.scidata.graphs.convert_df_to_graph">[docs]</a><span class="k">def</span> <span class="nf">convert_df_to_graph</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">asymmetric</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Turn a dataframe into a networkx graph.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -176,7 +176,7 @@
     <span class="k">return</span> <span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span> <span class="k">if</span> <span class="n">asymmetric</span> <span class="k">else</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">)(</span><span class="n">df</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="convert_adjacency_graph_to_df"><a class="viewcode-back" href="../../../api_reference.html#redtoolkit.scidata.graphs.convert_adjacency_graph_to_df">[docs]</a><span class="k">def</span> <span class="nf">convert_adjacency_graph_to_df</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
+<div class="viewcode-block" id="convert_adjacency_graph_to_df"><a class="viewcode-back" href="../../../api_reference.html#pretoText.scidata.graphs.convert_adjacency_graph_to_df">[docs]</a><span class="k">def</span> <span class="nf">convert_adjacency_graph_to_df</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Turn a nx.Graph in to a pandas dataframe where the first\</span>
 <span class="sd">       two columns hold all the nodes, and the third one the weight of the graph.</span>
 <span class="sd">    </span>
@@ -192,7 +192,7 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="convert_df_to_adjacency_df"><a class="viewcode-back" href="../../../api_reference.html#redtoolkit.scidata.graphs.convert_df_to_adjacency_df">[docs]</a><span class="k">def</span> <span class="nf">convert_df_to_adjacency_df</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">asymmetric</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="convert_df_to_adjacency_df"><a class="viewcode-back" href="../../../api_reference.html#pretoText.scidata.graphs.convert_df_to_adjacency_df">[docs]</a><span class="k">def</span> <span class="nf">convert_df_to_adjacency_df</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">asymmetric</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Turns a df holding pairs of elements into one representing an adjacency matrix.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>

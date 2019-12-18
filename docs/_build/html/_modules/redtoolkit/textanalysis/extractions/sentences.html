@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>redtoolkit.textanalysis.extractions.sentences &mdash; RED Toolkit 0+untagged.60.g0950654.dirty documentation</title>
+  <title>pretoText.textanalysis.extractions.sentences &mdash; RED Toolkit 0+untagged.60.g0950654.dirty documentation</title>
   
 
   
@@ -136,7 +136,7 @@
         
           <li><a href="../../../index.html">Module code</a> &raquo;</li>
         
-      <li>redtoolkit.textanalysis.extractions.sentences</li>
+      <li>pretoText.textanalysis.extractions.sentences</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -151,7 +151,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for redtoolkit.textanalysis.extractions.sentences</h1><div class="highlight"><pre>
+  <h1>Source code for pretoText.textanalysis.extractions.sentences</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="k">import</span> <span class="n">wordnet</span> <span class="k">as</span> <span class="n">wn</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">spacy</span>
@@ -169,7 +169,7 @@
 <span class="p">]</span>
 
 
-<div class="viewcode-block" id="extract_info"><a class="viewcode-back" href="../../../../api_reference.html#redtoolkit.textanalysis.extractions.sentences.extract_info">[docs]</a><span class="k">def</span> <span class="nf">extract_info</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">infos</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;pos_&quot;</span><span class="p">,</span> <span class="s2">&quot;tag_&quot;</span><span class="p">,</span> <span class="s2">&quot;dep_&quot;</span><span class="p">]):</span>
+<div class="viewcode-block" id="extract_info"><a class="viewcode-back" href="../../../../api_reference.html#pretoText.textanalysis.extractions.sentences.extract_info">[docs]</a><span class="k">def</span> <span class="nf">extract_info</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">infos</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;pos_&quot;</span><span class="p">,</span> <span class="s2">&quot;tag_&quot;</span><span class="p">,</span> <span class="s2">&quot;dep_&quot;</span><span class="p">]):</span>
     <span class="sd">&quot;&quot;&quot; Turns spacy token attributes into a dictionary.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -182,7 +182,7 @@
     <span class="k">return</span> <span class="p">{</span><span class="n">info</span><span class="p">:</span> <span class="n">token</span><span class="o">.</span><span class="n">get_attr</span><span class="p">(</span><span class="n">info</span><span class="p">)</span> <span class="k">for</span> <span class="n">info</span> <span class="ow">in</span> <span class="n">infos</span> <span class="k">if</span> <span class="p">(</span><span class="n">token</span><span class="o">.</span><span class="n">has_attr</span><span class="p">(</span><span class="n">info</span><span class="p">))}</span></div>
 
 
-<div class="viewcode-block" id="spacy_to_sent"><a class="viewcode-back" href="../../../../api_reference.html#redtoolkit.textanalysis.extractions.sentences.spacy_to_sent">[docs]</a><span class="k">def</span> <span class="nf">spacy_to_sent</span><span class="p">(</span><span class="n">spacy_sent</span><span class="p">):</span>
+<div class="viewcode-block" id="spacy_to_sent"><a class="viewcode-back" href="../../../../api_reference.html#pretoText.textanalysis.extractions.sentences.spacy_to_sent">[docs]</a><span class="k">def</span> <span class="nf">spacy_to_sent</span><span class="p">(</span><span class="n">spacy_sent</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Turns spacy.doc into cleaned string where only lowered alphanumeric tokens are kept.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -200,7 +200,7 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="spacy_to_relevant_tags"><a class="viewcode-back" href="../../../../api_reference.html#redtoolkit.textanalysis.extractions.sentences.spacy_to_relevant_tags">[docs]</a><span class="k">def</span> <span class="nf">spacy_to_relevant_tags</span><span class="p">(</span><span class="n">spacy_sent</span><span class="p">,</span> <span class="n">relevant_tags</span><span class="p">,</span> <span class="n">blacklist</span><span class="o">=</span><span class="p">[]):</span>
+<div class="viewcode-block" id="spacy_to_relevant_tags"><a class="viewcode-back" href="../../../../api_reference.html#pretoText.textanalysis.extractions.sentences.spacy_to_relevant_tags">[docs]</a><span class="k">def</span> <span class="nf">spacy_to_relevant_tags</span><span class="p">(</span><span class="n">spacy_sent</span><span class="p">,</span> <span class="n">relevant_tags</span><span class="p">,</span> <span class="n">blacklist</span><span class="o">=</span><span class="p">[]):</span>
     <span class="sd">&quot;&quot;&quot; Turns a spacy.doc into a string composed of only specific pos tagged words.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -221,7 +221,7 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="raw_doclist_to_sentence_list"><a class="viewcode-back" href="../../../../api_reference.html#redtoolkit.textanalysis.extractions.sentences.raw_doclist_to_sentence_list">[docs]</a><span class="k">def</span> <span class="nf">raw_doclist_to_sentence_list</span><span class="p">(</span><span class="n">doc_list</span><span class="p">,</span> <span class="n">nlp</span><span class="p">,</span> <span class="n">relevant_tags</span><span class="p">,</span> <span class="n">word</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">blacklist</span><span class="o">=</span><span class="p">[]):</span>
+<div class="viewcode-block" id="raw_doclist_to_sentence_list"><a class="viewcode-back" href="../../../../api_reference.html#pretoText.textanalysis.extractions.sentences.raw_doclist_to_sentence_list">[docs]</a><span class="k">def</span> <span class="nf">raw_doclist_to_sentence_list</span><span class="p">(</span><span class="n">doc_list</span><span class="p">,</span> <span class="n">nlp</span><span class="p">,</span> <span class="n">relevant_tags</span><span class="p">,</span> <span class="n">word</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">blacklist</span><span class="o">=</span><span class="p">[]):</span>
     <span class="sd">&quot;&quot;&quot; Turns a list of documents in a list of pairs composed of a sentence where a specific</span>
 <span class="sd">        word is found and the processes sentence where only words with specific pos tags are kept.</span>
 <span class="sd">        </span>
@@ -251,7 +251,7 @@
     <span class="k">return</span> <span class="p">[(</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">output</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span></div>
 
 
-<div class="viewcode-block" id="split_sentence_with_id"><a class="viewcode-back" href="../../../../api_reference.html#redtoolkit.textanalysis.extractions.sentences.split_sentence_with_id">[docs]</a><span class="k">def</span> <span class="nf">split_sentence_with_id</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">starting_id</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">splitter</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="split_sentence_with_id"><a class="viewcode-back" href="../../../../api_reference.html#pretoText.textanalysis.extractions.sentences.split_sentence_with_id">[docs]</a><span class="k">def</span> <span class="nf">split_sentence_with_id</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">starting_id</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">splitter</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;This function split a sentence according to a splitter element (default set as &#39;\n\n&#39;) and assign an id to the</span>
 <span class="sd">        sentences created. It start indexing enumerating the sentences from 00001.</span>
 <span class="sd">    </span>
@@ -274,7 +274,7 @@
     <span class="k">return</span> <span class="n">output</span></div>
 
 
-<div class="viewcode-block" id="extract_synonyms"><a class="viewcode-back" href="../../../../api_reference.html#redtoolkit.textanalysis.extractions.sentences.extract_synonyms">[docs]</a><span class="k">def</span> <span class="nf">extract_synonyms</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="s2">&quot;eng&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="extract_synonyms"><a class="viewcode-back" href="../../../../api_reference.html#pretoText.textanalysis.extractions.sentences.extract_synonyms">[docs]</a><span class="k">def</span> <span class="nf">extract_synonyms</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="s2">&quot;eng&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given a word as input, this methods extracts all the synomyms from WordNet in the given language. </span>
 <span class="sd">    It returns a list of words.</span>

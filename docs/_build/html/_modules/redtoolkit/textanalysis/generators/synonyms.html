@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>redtoolkit.textanalysis.generators.synonyms &mdash; RED Toolkit 0+untagged.60.g0950654.dirty documentation</title>
+  <title>pretoText.textanalysis.generators.synonyms &mdash; RED Toolkit 0+untagged.60.g0950654.dirty documentation</title>
   
 
   
@@ -136,7 +136,7 @@
         
           <li><a href="../../../index.html">Module code</a> &raquo;</li>
         
-      <li>redtoolkit.textanalysis.generators.synonyms</li>
+      <li>pretoText.textanalysis.generators.synonyms</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -151,9 +151,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for redtoolkit.textanalysis.generators.synonyms</h1><div class="highlight"><pre>
+  <h1>Source code for pretoText.textanalysis.generators.synonyms</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="k">import</span> <span class="n">wordnet</span> <span class="k">as</span> <span class="n">wn</span>
-<span class="kn">from</span> <span class="nn">redtoolkit.textanalysis.helpers.converter</span> <span class="k">import</span> <span class="n">any2wnpos</span>
+<span class="kn">from</span> <span class="nn">pretoText.textanalysis.helpers.converter</span> <span class="k">import</span> <span class="n">any2wnpos</span>
 
 <span class="kn">import</span> <span class="nn">nltk</span>
 
@@ -163,7 +163,7 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;generate_from_wordnet&quot;</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="generate_from_wordnet"><a class="viewcode-back" href="../../../../api_reference.html#redtoolkit.textanalysis.generators.synonyms.generate_from_wordnet">[docs]</a><span class="k">def</span> <span class="nf">generate_from_wordnet</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="s2">&quot;eng&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="generate_from_wordnet"><a class="viewcode-back" href="../../../../api_reference.html#pretoText.textanalysis.generators.synonyms.generate_from_wordnet">[docs]</a><span class="k">def</span> <span class="nf">generate_from_wordnet</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="s2">&quot;eng&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate all the synonyms from WordNet in the given language. </span>
 <span class="sd">    </span>

@@ -6,7 +6,7 @@ Examples from inside a project
 
 ::
 
-    from redtoolkit.textanalysis import similarities
+    from pretoText.textanalysis import similarities
 
     df_sim_wn = similarities.wordnet.ranking_by_wordnet_from_gsheet(
         gsheet_id,
@@ -24,4 +24,4 @@ If using pipenv, ``pipenv run`` must precede the command or ``pipenv shell`` mus
 
 ::
 
-    python redtoolkit ranking_by_wordnet_from_gsheet gsheet_id --parallelisation=2 --sorting=True --column=a_column --sheet_name=a_sheet_name
+    python pretoText ranking_by_wordnet_from_gsheet gsheet_id --parallelisation=2 --sorting=True --column=a_column --sheet_name=a_sheet_name

@@ -10,19 +10,19 @@ Scidata
 Dataframes
 ----------
 
-.. automodule:: redtoolkit.scidata.dataframes
+.. automodule:: pretoText.scidata.dataframes
     :members:
 
 Graphs
 ------
 
-.. automodule:: redtoolkit.scidata.graphs
+.. automodule:: pretoText.scidata.graphs
     :members:
 
 Vectors
 -------
 
-.. automodule:: redtoolkit.scidata.vectors
+.. automodule:: pretoText.scidata.vectors
     :members:
 
  
@@ -37,13 +37,13 @@ This module takes into account different classification techniques, discriminati
 - Rule based
 - Statistical
 
-.. automodule:: redtoolkit.textanalysis.classifiers.bow_classifier
+.. automodule:: pretoText.textanalysis.classifiers.bow_classifier
     :members:
 
 Extractors
 ----------
 
-.. automodule:: redtoolkit.textanalysis.extractors.ner
+.. automodule:: pretoText.textanalysis.extractors.ner
     :members:
 
 Generators
@@ -52,7 +52,7 @@ Generators
 Synonyms
 ~~~~~~~~
 
-.. automodule:: redtoolkit.textanalysis.generators.synonyms
+.. automodule:: pretoText.textanalysis.generators.synonyms
     :members:
 
 Helpers
@@ -61,19 +61,19 @@ Helpers
 Converter
 ~~~~~~~~~
 
-.. automodule:: redtoolkit.textanalysis.helpers.converter
+.. automodule:: pretoText.textanalysis.helpers.converter
     :members:
 
 Despacy
 ~~~~~~~
 
-.. automodule:: redtoolkit.textanalysis.helpers.despacy
+.. automodule:: pretoText.textanalysis.helpers.despacy
     :members:
 
 Splitter
 ~~~~~~~~
 
-.. automodule:: redtoolkit.textanalysis.helpers.splitter
+.. automodule:: pretoText.textanalysis.helpers.splitter
     :members:
 
 Similarities
@@ -82,13 +82,13 @@ Similarities
 Embeddings
 ~~~~~~~~~~
 
-.. automodule:: redtoolkit.textanalysis.similarities.embeddings
+.. automodule:: pretoText.textanalysis.similarities.embeddings
     :members:
 
 WordNet
 ~~~~~~~
 
-.. automodule:: redtoolkit.textanalysis.similarities.wordnet
+.. automodule:: pretoText.textanalysis.similarities.wordnet
     :members:
 
 
@@ -98,25 +98,25 @@ Utilities
 Exporters
 ---------
 
-.. automodule:: redtoolkit.utils.exporters
+.. automodule:: pretoText.utils.exporters
     :members:
 
 Importers
 ---------
 
-.. automodule:: redtoolkit.utils.importers
+.. automodule:: pretoText.utils.importers
     :members:
 
 Parallelism
 -----------
 
-.. automodule:: redtoolkit.utils.parallelism
+.. automodule:: pretoText.utils.parallelism
     :members:
 
 spaCy
 -----
 
-.. automodule:: redtoolkit.utils.spacy
+.. automodule:: pretoText.utils.spacy
     :members:
 
 Visualization
@@ -132,5 +132,5 @@ MOOC
 Coursera
 ~~~~~~~~
 
-.. automodule:: redtoolkit.wrappers.mooc.coursera
+.. automodule:: pretoText.wrappers.mooc.coursera
     :members:

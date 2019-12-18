@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>redtoolkit.textanalysis.classifiers.bow_classifier &mdash; RED Toolkit 0+untagged.60.g0950654.dirty documentation</title>
+  <title>pretoText.textanalysis.classifiers.bow_classifier &mdash; RED Toolkit 0+untagged.60.g0950654.dirty documentation</title>
   
 
   
@@ -136,7 +136,7 @@
         
           <li><a href="../../../index.html">Module code</a> &raquo;</li>
         
-      <li>redtoolkit.textanalysis.classifiers.bow_classifier</li>
+      <li>pretoText.textanalysis.classifiers.bow_classifier</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -151,9 +151,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for redtoolkit.textanalysis.classifiers.bow_classifier</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">redtoolkit.textanalysis.helpers</span> <span class="k">import</span> <span class="n">despacy</span>
-<span class="kn">from</span> <span class="nn">redtoolkit.scidata</span> <span class="k">import</span> <span class="n">dataframes</span>
+  <h1>Source code for pretoText.textanalysis.classifiers.bow_classifier</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pretoText.textanalysis.helpers</span> <span class="k">import</span> <span class="n">despacy</span>
+<span class="kn">from</span> <span class="nn">pretoText.scidata</span> <span class="k">import</span> <span class="n">dataframes</span>
 
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">train_test_split</span>
 <span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="k">import</span> <span class="n">CountVectorizer</span>
@@ -163,7 +163,7 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
-<div class="viewcode-block" id="AutomaticSentenceRecover"><a class="viewcode-back" href="../../../../api_reference.html#redtoolkit.textanalysis.classifiers.bow_classifier.AutomaticSentenceRecover">[docs]</a><span class="k">class</span> <span class="nc">AutomaticSentenceRecover</span><span class="p">:</span>
+<div class="viewcode-block" id="AutomaticSentenceRecover"><a class="viewcode-back" href="../../../../api_reference.html#pretoText.textanalysis.classifiers.bow_classifier.AutomaticSentenceRecover">[docs]</a><span class="k">class</span> <span class="nc">AutomaticSentenceRecover</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Class to perform a support vector machine on a bag of word representation of text.</span>
 <span class="sd">    </span>
 <span class="sd">    Returns:</span>
@@ -195,7 +195,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="AutomaticSentenceRecover.struct_data"><a class="viewcode-back" href="../../../../api_reference.html#redtoolkit.textanalysis.classifiers.bow_classifier.AutomaticSentenceRecover.struct_data">[docs]</a>    <span class="k">def</span> <span class="nf">struct_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="AutomaticSentenceRecover.struct_data"><a class="viewcode-back" href="../../../../api_reference.html#pretoText.textanalysis.classifiers.bow_classifier.AutomaticSentenceRecover.struct_data">[docs]</a>    <span class="k">def</span> <span class="nf">struct_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Structures the data into a sparse matrix and a target vector for the training.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -213,7 +213,7 @@
             <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">examples</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_words</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="AutomaticSentenceRecover.train_classifier"><a class="viewcode-back" href="../../../../api_reference.html#redtoolkit.textanalysis.classifiers.bow_classifier.AutomaticSentenceRecover.train_classifier">[docs]</a>    <span class="k">def</span> <span class="nf">train_classifier</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="AutomaticSentenceRecover.train_classifier"><a class="viewcode-back" href="../../../../api_reference.html#pretoText.textanalysis.classifiers.bow_classifier.AutomaticSentenceRecover.train_classifier">[docs]</a>    <span class="k">def</span> <span class="nf">train_classifier</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; After splitting the dataset into train and test </span>
 <span class="sd">            train a linear support vector machine on the dataset</span>
 <span class="sd">            also writes accuracy, precision, recall, F1 in their respective </span>
@@ -234,7 +234,7 @@
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">[</span><span class="s2">&quot;F1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">),</span> <span class="n">test_labels</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="AutomaticSentenceRecover.predict_new"><a class="viewcode-back" href="../../../../api_reference.html#redtoolkit.textanalysis.classifiers.bow_classifier.AutomaticSentenceRecover.predict_new">[docs]</a>    <span class="k">def</span> <span class="nf">predict_new</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_sentences</span><span class="p">):</span>
+<div class="viewcode-block" id="AutomaticSentenceRecover.predict_new"><a class="viewcode-back" href="../../../../api_reference.html#pretoText.textanalysis.classifiers.bow_classifier.AutomaticSentenceRecover.predict_new">[docs]</a>    <span class="k">def</span> <span class="nf">predict_new</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_sentences</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Predicts which sentences respect the patterns from the given predicting_doclist.</span>
 <span class="sd">        </span>
 <span class="sd">        Args:</span>

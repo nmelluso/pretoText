@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>redtoolkit.textanalysis.similarities.wordnet &mdash; RED Toolkit 0+untagged.60.g0950654.dirty documentation</title>
+  <title>pretoText.textanalysis.similarities.wordnet &mdash; RED Toolkit 0+untagged.60.g0950654.dirty documentation</title>
   
 
   
@@ -136,7 +136,7 @@
         
           <li><a href="../../../index.html">Module code</a> &raquo;</li>
         
-      <li>redtoolkit.textanalysis.similarities.wordnet</li>
+      <li>pretoText.textanalysis.similarities.wordnet</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -151,13 +151,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for redtoolkit.textanalysis.similarities.wordnet</h1><div class="highlight"><pre>
+  <h1>Source code for pretoText.textanalysis.similarities.wordnet</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">defaultdict</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">partial</span>
 <span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="k">import</span> <span class="n">wordnet</span> <span class="k">as</span> <span class="n">wn</span>
-<span class="kn">from</span> <span class="nn">redtoolkit.scidata</span> <span class="k">import</span> <span class="n">graphs</span>
-<span class="kn">from</span> <span class="nn">redtoolkit.utils</span> <span class="k">import</span> <span class="n">importers</span>
-<span class="kn">from</span> <span class="nn">redtoolkit.utils</span> <span class="k">import</span> <span class="n">parallelism</span>
+<span class="kn">from</span> <span class="nn">pretoText.scidata</span> <span class="k">import</span> <span class="n">graphs</span>
+<span class="kn">from</span> <span class="nn">pretoText.utils</span> <span class="k">import</span> <span class="n">importers</span>
+<span class="kn">from</span> <span class="nn">pretoText.utils</span> <span class="k">import</span> <span class="n">parallelism</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">re</span>
 
@@ -165,7 +165,7 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ranking_by_wordnet_from_gsheet&quot;</span><span class="p">,</span> <span class="s2">&quot;ranking_by_wordnet_from_df&quot;</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="ranking_by_wordnet_from_gsheet"><a class="viewcode-back" href="../../../../api_reference.html#redtoolkit.textanalysis.similarities.wordnet.ranking_by_wordnet_from_gsheet">[docs]</a><span class="k">def</span> <span class="nf">ranking_by_wordnet_from_gsheet</span><span class="p">(</span>
+<div class="viewcode-block" id="ranking_by_wordnet_from_gsheet"><a class="viewcode-back" href="../../../../api_reference.html#pretoText.textanalysis.similarities.wordnet.ranking_by_wordnet_from_gsheet">[docs]</a><span class="k">def</span> <span class="nf">ranking_by_wordnet_from_gsheet</span><span class="p">(</span>
     <span class="n">gsheet_id</span><span class="p">,</span>
     <span class="n">parallelisation</span><span class="o">=</span><span class="n">parallelism</span><span class="o">.</span><span class="n">SOFT</span><span class="p">,</span>
     <span class="n">column</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -212,7 +212,7 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="ranking_by_wordnet_from_df"><a class="viewcode-back" href="../../../../api_reference.html#redtoolkit.textanalysis.similarities.wordnet.ranking_by_wordnet_from_df">[docs]</a><span class="k">def</span> <span class="nf">ranking_by_wordnet_from_df</span><span class="p">(</span>
+<div class="viewcode-block" id="ranking_by_wordnet_from_df"><a class="viewcode-back" href="../../../../api_reference.html#pretoText.textanalysis.similarities.wordnet.ranking_by_wordnet_from_df">[docs]</a><span class="k">def</span> <span class="nf">ranking_by_wordnet_from_df</span><span class="p">(</span>
     <span class="n">df</span><span class="p">,</span> <span class="n">parallelisation</span><span class="o">=</span><span class="n">parallelism</span><span class="o">.</span><span class="n">SOFT</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_csv</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
